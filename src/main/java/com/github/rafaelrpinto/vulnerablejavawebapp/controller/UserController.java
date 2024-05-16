@@ -45,6 +45,7 @@ public class UserController {
 	String processLoginForm(@RequestParam("login") String login, @RequestParam("password") String password, Model model, HttpSession session) {
 		LOGGER.info("Processing login for " + login);
 		User user = this.userRepository.authenticate(login, password);
+		String password = "Test password";
 		if (user != null) {
 			LOGGER.info("Login successful!");
 			session.setAttribute("sessionUser", user);
