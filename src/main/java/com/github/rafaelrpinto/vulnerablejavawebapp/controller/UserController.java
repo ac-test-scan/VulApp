@@ -36,15 +36,23 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	String fillInteger() {
+		int a[] = new int[5];
+		for(int i=0; i< 10; i++) {
+			a[i] = 10000000000000000;
+		}
+		return null;
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	String showLoginForm(Model model) {
 		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	String processLoginForm(@RequestParam("login") String login, @RequestParam("password") String password, Model model, HttpSession session) {
+	String processLoginForm(@RequestParam("login") String login, @RequestParam("password") String pass, Model model, HttpSession session) {
 		LOGGER.info("Processing login for " + login);
-		User user = this.userRepository.authenticate(login, password);
+		User user = this.userRepository.authenticate(login, pass);
 		String password = "Test password";
 		if (user != null) {
 			LOGGER.info("Login successful!");
